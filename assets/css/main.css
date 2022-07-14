@@ -1,6 +1,21 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 
+/* stuff */
+
+  /* Create an active/current tablink class */
+.tab button.active {
+	background-color: rgba(255, 255, 255, 0.25);
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+	display: none;
+	padding: 50px 0px 0px 0px;
+  }
+  
+  
+
 /*
 	Dimension by HTML5 UP
 	html5up.net | @ajlkn
@@ -1667,3 +1682,5 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+
