@@ -18,6 +18,7 @@ jobs:
           mkdir -p site/index-chinese
           cp index.html site/
           cp index-chinese.html site/
+          cp catalog.html site/
           cp *.txt site/ 2>/dev/null || true
           cp Emma.jpeg site/
           cp -R assets site/

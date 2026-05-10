@@ -58,6 +58,36 @@
 	padding-left: 0.15rem;
 }
 
+body.catalog-page #wrapper {
+	min-height: 100vh;
+	padding: 2rem;
+	justify-content: flex-start;
+}
+
+.catalog-page-main {
+	width: 52rem;
+	max-width: 100%;
+	margin: 2rem auto;
+	padding: 3rem 2.5rem;
+	background-color: rgba(27, 31, 34, 0.85);
+	border-radius: 4px;
+}
+
+.catalog-page-main > :last-child {
+	margin-bottom: 0;
+}
+
+@media screen and (max-width: 736px) {
+	body.catalog-page #wrapper {
+		padding: 1.5rem 1rem;
+	}
+
+	.catalog-page-main {
+		margin: 1.5rem auto;
+		padding: 2rem 1.25rem;
+	}
+}
+
 /*
 	Dimension by HTML5 UP
 	html5up.net | @ajlkn
