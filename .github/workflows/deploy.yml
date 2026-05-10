@@ -15,7 +15,7 @@ jobs:
 
       - name: Prepare static site bundle
         run: |
-          mkdir -p site/index-chinese
+          mkdir -p site/index-chinese site/catalog
           cp index.html site/
           cp index-chinese.html site/
           cp catalog.html site/
@@ -24,6 +24,7 @@ jobs:
           cp -R assets site/
           cp -R images site/
           cp index-chinese.html site/index-chinese/index.html
+          cp catalog.html site/catalog/index.html
           touch site/.nojekyll
 
       - name: Upload GitHub Pages artifact
@@ -79,7 +80,7 @@ jobs:
                 "*firebase-adminsdk*.json",
                 "college-counseling-1182b-*.json"
               ],
-              "cleanUrls": true,
+              "cleanUrls": false,
               "trailingSlash": false,
               "rewrites": [
                 {

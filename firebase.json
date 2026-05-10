@@ -20,7 +20,7 @@
       "index.php",
       "tencent15744743979938885908.txt"
     ],
-    "cleanUrls": true,
+    "cleanUrls": false,
     "trailingSlash": false,
     "rewrites": [
       {
