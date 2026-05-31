@@ -77,8 +77,9 @@ Once that secret is added, pushing to `main` will deploy to both GitHub Pages an
 
 ### Notes
 
-- `index.html` is the main English homepage.
-- `index-chinese.html` will be available at `/index-chinese`.
+- `index.html` is the main Chinese homepage and default root page.
+- `index-english.html` is the English homepage.
+- `index-chinese.html` is kept as a compatibility copy and will also be available at `/index-chinese`.
 - `index.php` is not needed on Firebase Hosting because the site is deployed as static files.
 - Repo-only files like `README.md`, `LICENSE.txt`, `composer.json`, `index.php`, and the Tencent verification text file are excluded from deploy.
-- GitHub Actions generates a compatibility route at `index-chinese/index.html` during deploy so `/index-chinese/` works on GitHub Pages without duplicating the page in the repo.
+- GitHub Actions generates a compatibility route at `index-chinese/index.html` during deploy so `/index-chinese/` keeps working on GitHub Pages.
