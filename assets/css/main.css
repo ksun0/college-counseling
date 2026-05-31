@@ -58,6 +58,48 @@
 	padding-left: 0.15rem;
 }
 
+.catalog-audio::before,
+.catalog-document::before,
+.doc-resource-audio::before,
+.doc-resource-document::before {
+	display: inline-block;
+	width: 1.35rem;
+	margin-left: -0.05rem;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	text-decoration: none;
+}
+
+.catalog-audio::before,
+.doc-resource-audio::before {
+	content: "\f028";
+}
+
+.catalog-document::before,
+.doc-resource-document::before {
+	content: "\f15c";
+}
+
+.catalog-document-content {
+	line-height: 1.55;
+}
+
+.catalog-document-content p {
+	margin: 0 0 1rem 0;
+}
+
+.catalog-document-content img {
+	display: block;
+	max-width: 100%;
+	height: auto !important;
+	margin: 1rem 0;
+	border-radius: 4px;
+}
+
+.doc-resource-link {
+	display: inline-block;
+}
+
 body.catalog-page #wrapper {
 	min-height: 100vh;
 	padding: 2rem;

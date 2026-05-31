@@ -15,16 +15,18 @@ jobs:
 
       - name: Prepare static site bundle
         run: |
-          mkdir -p site/index-chinese site/catalog
+          mkdir -p site/index-chinese site/catalog site/dec-2025-early-application-reflection
           cp index.html site/
           cp index-chinese.html site/
           cp catalog.html site/
+          cp dec-2025-early-application-reflection.html site/
           cp *.txt site/ 2>/dev/null || true
           cp Emma.jpeg site/
           cp -R assets site/
           cp -R images site/
           cp index-chinese.html site/index-chinese/index.html
           cp catalog.html site/catalog/index.html
+          cp dec-2025-early-application-reflection.html site/dec-2025-early-application-reflection/index.html
           touch site/.nojekyll
 
       - name: Upload GitHub Pages artifact
