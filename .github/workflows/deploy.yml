@@ -15,7 +15,7 @@ jobs:
 
       - name: Prepare static site bundle
         run: |
-          mkdir -p site/index-chinese site/catalog site/dec-2025-early-application-reflection
+          mkdir -p site/index-english site/index-chinese site/catalog site/dec-2025-early-application-reflection
           cp index.html site/
           cp index-english.html site/
           cp index-chinese.html site/
@@ -25,6 +25,7 @@ jobs:
           cp Emma.jpeg site/
           cp -R assets site/
           cp -R images site/
+          cp index-english.html site/index-english/index.html
           cp index.html site/index-chinese/index.html
           cp catalog.html site/catalog/index.html
           cp dec-2025-early-application-reflection.html site/dec-2025-early-application-reflection/index.html
