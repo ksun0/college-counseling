@@ -61,7 +61,8 @@
 .catalog-audio::before,
 .catalog-document::before,
 .doc-resource-audio::before,
-.doc-resource-document::before {
+.doc-resource-document::before,
+.doc-resource-website::before {
 	display: inline-block;
 	width: 1.35rem;
 	margin-left: -0.05rem;
@@ -78,6 +79,10 @@
 .catalog-document::before,
 .doc-resource-document::before {
 	content: "\f15c";
+}
+
+.doc-resource-website::before {
+	content: "\f0c1";
 }
 
 .catalog-document-content {
@@ -98,6 +103,16 @@
 
 .doc-resource-link {
 	display: inline-block;
+}
+
+.document-page-main h1.major {
+	width: auto;
+	max-width: 100%;
+	font-size: 1.9rem;
+	line-height: 1.25;
+	letter-spacing: 0.08rem;
+	text-transform: none;
+	overflow-wrap: anywhere;
 }
 
 body.catalog-page #wrapper {
@@ -127,6 +142,11 @@ body.catalog-page #wrapper {
 	.catalog-page-main {
 		margin: 1.5rem auto;
 		padding: 2rem 1.25rem;
+	}
+
+	.document-page-main h1.major {
+		font-size: 1.35rem;
+		line-height: 1.3;
 	}
 }
 
