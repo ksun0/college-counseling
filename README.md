@@ -34,6 +34,8 @@ This repo is currently configured for:
 
 - Firebase project id: `college-counseling-1182b`
 - Firebase Hosting site id: `bingjincounseling`
+- Firebase Web app id: `1:780144804893:web:5597005682e6002699b2f4`
+- Google Analytics measurement id: `G-04TXSLJPV8`
 
 After deploy, Firebase gives free default domains like:
 
@@ -83,3 +85,4 @@ Once that secret is added, pushing to `main` will deploy to both GitHub Pages an
 - `index.php` is not needed on Firebase Hosting because the site is deployed as static files.
 - Repo-only files like `README.md`, `LICENSE.txt`, `composer.json`, `index.php`, and the Tencent verification text file are excluded from deploy.
 - GitHub Actions generates a compatibility route at `index-chinese/index.html` during deploy so `/index-chinese/` keeps working on GitHub Pages.
+- Audio play counts are tracked as Google Analytics event `audio_play` from `assets/js/catalog.js`. These counts are not shown publicly; view them in Firebase/Google Analytics.
