@@ -115,4 +115,19 @@ jobs:
 
       - name: Deploy to Firebase Hosting
         working-directory: site
-        run: firebase deploy --only hosting --project college-counseling-1182b
+        run: |
+          set +e
+          firebase deploy --only hosting --project college-counseling-1182b 2>&1 | tee "$RUNNER_TEMP/firebase-deploy.log"
+          status=${PIPESTATUS[0]}
+          set -e
+
+          if [ "$status" -eq 0 ]; then
+            exit 0
+          fi
+
+          if grep -q "is the current active version" "$RUNNER_TEMP/firebase-deploy.log"; then
+            echo "Firebase Hosting already has this version active; treating deploy as successful."
+            exit 0
+          fi
+
+          exit "$status"
