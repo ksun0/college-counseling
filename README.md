@@ -86,3 +86,52 @@ Once that secret is added, pushing to `main` will deploy to both GitHub Pages an
 - Repo-only files like `README.md`, `LICENSE.txt`, `composer.json`, `index.php`, and the Tencent verification text file are excluded from deploy.
 - GitHub Actions generates a compatibility route at `index-chinese/index.html` during deploy so `/index-chinese/` keeps working on GitHub Pages.
 - Audio play counts are tracked as Google Analytics event `audio_play` from `assets/js/catalog.js`. These counts are not shown publicly; view them in Firebase/Google Analytics.
+
+## Audio Play Analytics
+
+Audio play tracking uses Google Analytics 4 event tracking.
+
+Event name:
+
+- `audio_play`
+
+Event parameters:
+
+- `audio_title`: visible recording title text
+- `audio_file_id`: Google Drive file id
+- `page_path`: page where the recording was opened
+
+To confirm tracking in realtime:
+
+1. Open [Google Analytics](https://analytics.google.com/).
+2. Select the `college-counseling-1182b` property.
+3. Go to `Reports -> Realtime overview`.
+4. Open `https://bingjincounseling.web.app/catalog.html` in another browser tab.
+5. Click an audio recording.
+6. Wait 10-60 seconds and look for event `audio_play`.
+
+To view play counts by recording:
+
+1. Go to `Admin`.
+2. Under `Data display`, open `Custom definitions`.
+3. Click `Create custom dimension`.
+4. Create an event-scoped dimension:
+   - Dimension name: `Audio title`
+   - Scope: `Event`
+   - Event parameter: `audio_title`
+5. Create another event-scoped dimension:
+   - Dimension name: `Audio file ID`
+   - Scope: `Event`
+   - Event parameter: `audio_file_id`
+6. After GA has processed new events, go to `Explore`.
+7. Create a free-form exploration with:
+   - Rows: `Audio title`
+   - Metrics: `Event count`
+   - Filter: `Event name exactly matches audio_play`
+
+Notes:
+
+- `audio_play` counts player opens/clicks, not full listens.
+- Standard GA reports can lag. Use realtime reports for immediate testing.
+- Ad blockers can block Google Analytics during testing.
+- Keep one event name, `audio_play`, and split by `audio_title` or `audio_file_id`; do not create a separate event name for every recording.
