@@ -25,6 +25,7 @@ jobs:
           cp *.txt site/ 2>/dev/null || true
           cp Emma.jpeg site/
           cp -R assets site/
+          cp -R audio site/
           cp -R images site/
           cp index-english.html site/index-english/index.html
           cp index.html site/index-chinese/index.html

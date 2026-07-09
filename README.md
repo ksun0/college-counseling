@@ -87,6 +87,42 @@ Once that secret is added, pushing to `main` will deploy to both GitHub Pages an
 - GitHub Actions generates a compatibility route at `index-chinese/index.html` during deploy so `/index-chinese/` keeps working on GitHub Pages.
 - Audio play counts are tracked as Google Analytics event `audio_play` from `assets/js/catalog.js`. These counts are not shown publicly; view them in Firebase/Google Analytics.
 
+## Self-Hosted Audio
+
+Catalog audio uses a native HTML `<audio>` player instead of Google Drive preview if the recording exists in `audio/`.
+
+Implementation details:
+
+- Audio files live in `audio/` and are named by the original Google Drive file id, for example `audio/1_ZZAvc8VrA3fHSKX1h88guUT7hS3nMA-.mp3`.
+- Audio links use `href="#"` plus `data-drive-id="..."`; they should not link directly to Google Drive.
+- `assets/js/catalog.js` maps available file ids to their local file extensions.
+- The player uses `controlsList="nodownload"` and blocks right-click on the audio element.
+- This removes the normal browser download button and removes visible Google Drive links, but it is still download deterrence, not true DRM. A determined user can still inspect network requests for public audio files.
+- `.github/workflows/deploy.yml` copies `audio/` into the generated deploy bundle.
+
+As of the local-audio migration, 27 public recordings have local files. These 12 recordings intentionally remain on locked Google Drive links so viewers can request access:
+
+- `1i_wFeTuNjrBnkSJAa846sHO5QlnH-EY0` - 如何从小培养孩子的兴趣爱好(家长嘉宾讲座)
+- `1Zv554SyDzb1NOtRRd0UODqhnqoxiohrG` - 我如何指导学生写大学申请的牛皮书
+- `1GsYXQ9KQbejLfbV6XVuz-o1Ftb_IqrVt` - 什么时候用tutor，如何选择，如何沟通
+- `1f0o7MvlHpGzLYAZFUxHrZ1w9goXtqtyc` - MIT学生案例
+- `13Kj74GZeU2jjlxFfyqvf6GmqQcJLlLyL` - RSI申请
+- `1pbOKv0LKhTdOKnEjUsV2ZqdLQzjnan1M` - 我的职业生涯以及两次经济危机的经历
+- `19B7bKB0xCm2QRu4wbCMAHrzt1vMhU7FM` - 高中生如何做研究
+- `1sFZINF1s4_e-B8CFJwTmqBPg3KKYLdUh` - 我的医学院申请和就业
+- `1toD3ueLIzZsblKTc-TYJMYS_x8FRWy7k` - 我的法学院申请和就业
+- `1Av2M9UinsT776-rjlNokC57CXxoFBsef` - 女生如何在STEM领域胜出
+- `1DA8N6C16fCB1en1mxfu6S_--0Jq3kwbO` - 我如何申请到哥伦比亚
+- `1wBn7J-QCxmyk6JDrbB-gcpZCbhWbskld` - 我在华尔街的工作
+
+To move one of the locked recordings to local playback later:
+
+1. Download the recording from Google Drive while signed in with access.
+2. Save it under `audio/` as `{drive-file-id}.mp3` or `{drive-file-id}.m4a`.
+3. Add the file id and extension to `localAudioFiles` in `assets/js/catalog.js`.
+4. Change the catalog link from a Drive URL to `href="#" data-drive-id="{drive-file-id}"`.
+5. Commit the new audio file, catalog change, and JS change.
+
 ## Audio Play Analytics
 
 Audio play tracking uses Google Analytics 4 event tracking.
