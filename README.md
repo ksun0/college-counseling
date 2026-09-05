@@ -82,20 +82,21 @@ Once that secret is added, pushing to `main` will deploy to both GitHub Pages an
 - `index.html` is the main Chinese homepage and default root page.
 - `index-english.html` is the English homepage.
 - `index-chinese.html` is kept as a compatibility copy and will also be available at `/index-chinese`.
+- `audio.html` is the standalone audio catalog. It is not linked from either homepage; `catalog.html` has been removed.
 - `index.php` is not needed on Firebase Hosting because the site is deployed as static files.
 - Repo-only files like `README.md`, `LICENSE.txt`, `composer.json`, `index.php`, and the Tencent verification text file are excluded from deploy.
 - GitHub Actions generates a compatibility route at `index-chinese/index.html` during deploy so `/index-chinese/` keeps working on GitHub Pages.
-- Audio play counts are tracked as Google Analytics event `audio_play` from `assets/js/catalog.js`. These counts are not shown publicly; view them in Firebase/Google Analytics.
+- Audio play counts are tracked as Google Analytics event `audio_play` from `assets/js/audio.js`. These counts are not shown publicly; view them in Firebase/Google Analytics.
 
 ## Self-Hosted Audio
 
-Catalog audio uses a native HTML `<audio>` player instead of Google Drive preview if the recording exists in `audio/`.
+The `audio.html` page uses a native HTML `<audio>` player instead of Google Drive preview if the recording exists in `audio/`.
 
 Implementation details:
 
 - Audio files live in `audio/` and are named by the original Google Drive file id, for example `audio/1_ZZAvc8VrA3fHSKX1h88guUT7hS3nMA-.mp3`.
 - Audio links use `href="#"` plus `data-drive-id="..."`; they should not link directly to Google Drive.
-- `assets/js/catalog.js` maps available file ids to their local file extensions.
+- `assets/js/audio.js` maps available file ids to their local file extensions.
 - The player uses `controlsList="nodownload"` and blocks right-click on the audio element.
 - This removes the normal browser download button and removes visible Google Drive links, but it is still download deterrence, not true DRM. A determined user can still inspect network requests for public audio files.
 - `.github/workflows/deploy.yml` copies `audio/` into the generated deploy bundle.
@@ -119,9 +120,9 @@ To move one of the locked recordings to local playback later:
 
 1. Download the recording from Google Drive while signed in with access.
 2. Save it under `audio/` as `{drive-file-id}.mp3` or `{drive-file-id}.m4a`.
-3. Add the file id and extension to `localAudioFiles` in `assets/js/catalog.js`.
-4. Change the catalog link from a Drive URL to `href="#" data-drive-id="{drive-file-id}"`.
-5. Commit the new audio file, catalog change, and JS change.
+3. Add the file id and extension to `localAudioFiles` in `assets/js/audio.js`.
+4. Change the link in `audio.html` from a Drive URL to `href="#" data-drive-id="{drive-file-id}"`.
+5. Commit the new audio file, `audio.html` change, and JS change.
 
 ## Audio Play Analytics
 
@@ -142,7 +143,7 @@ To confirm tracking in realtime:
 1. Open [Google Analytics](https://analytics.google.com/).
 2. Select the `college-counseling-1182b` property.
 3. Go to `Reports -> Realtime overview`.
-4. Open `https://bingjincounseling.web.app/catalog.html` in another browser tab.
+4. Open `https://bingjincounseling.web.app/audio.html` in another browser tab.
 5. Click an audio recording.
 6. Wait 10-60 seconds and look for event `audio_play`.
 
