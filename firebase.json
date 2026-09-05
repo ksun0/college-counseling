@@ -24,6 +24,10 @@
     "trailingSlash": false,
     "rewrites": [
       {
+        "source": "/audio",
+        "destination": "/audio.html"
+      },
+      {
         "source": "/",
         "destination": "/index.html"
       }

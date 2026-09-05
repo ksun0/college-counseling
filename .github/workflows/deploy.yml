@@ -29,6 +29,8 @@ jobs:
           cp -R images site/
           cp index-english.html site/index-english/index.html
           cp index.html site/index-chinese/index.html
+          cp audio.html site/audio/index.html
+          sed -i '0,/<head>/s|<head>|<head>\n    <base href="../" />|' site/audio/index.html
           cp dec-2025-early-application-reflection.html site/dec-2025-early-application-reflection/index.html
           cp two-case-studies-shenzhen.html site/two-case-studies-shenzhen/index.html
           touch site/.nojekyll
@@ -89,6 +91,10 @@ jobs:
               "cleanUrls": false,
               "trailingSlash": false,
               "rewrites": [
+                {
+                  "source": "/audio",
+                  "destination": "/audio.html"
+                },
                 {
                   "source": "/",
                   "destination": "/index.html"
