@@ -4,6 +4,7 @@ var catalogPlayerAudio = document.getElementById("catalog-player-audio");
 var catalogPlayerTitle = document.getElementById("catalog-player-title");
 var firebaseMeasurementId = "G-04TXSLJPV8";
 var localAudioFiles = {
+  "DIY_research": "mp3",
   "10lEf7yDD-SnA24_5jnZoMfvTKkbBr7zc": "m4a",
   "12qLh3Y8-W07bFQe39jyAGSLLJT-aMMYl": "mp3",
   "13xcs9iihRoq8DagGabRBvbZlggacfjSJ": "m4a",
